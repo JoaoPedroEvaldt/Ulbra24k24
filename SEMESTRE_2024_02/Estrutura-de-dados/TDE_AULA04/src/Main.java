@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
-        public class SortingAlgorithms {
+        class SortingAlgorithms {
 
 
             public void bubbleSortAsc(int[] array) {
