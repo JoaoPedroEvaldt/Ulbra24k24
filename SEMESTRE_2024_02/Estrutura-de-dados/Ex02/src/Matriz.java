@@ -12,12 +12,12 @@ public class Matriz {
     public void preencherAleatorio() {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                matriz[i][j] = (int)(Math.random() * 100); // Preenche com valores aleatórios entre 0 e 99
+                matriz[i][j] = (int) (Math.random() * 100);
             }
         }
     }
 
-
+   
     public void exibirMatriz() {
         for (int[] linha : matriz) {
             for (int valor : linha) {
@@ -58,6 +58,21 @@ public class Matriz {
 
     public void ordenarLinhaMerge(int linha) {
         mergeSort(matriz[linha], 0, matriz[linha].length - 1);
+    }
+
+
+    public void ordenarColunaMerge(int coluna) {
+        int[] tempColuna = new int[matriz.length];
+        for (int i = 0; i < matriz.length; i++) {
+            tempColuna[i] = matriz[i][coluna];
+        }
+
+        mergeSort(tempColuna, 0, tempColuna.length - 1);
+
+
+        for (int i = 0; i < matriz.length; i++) {
+            matriz[i][coluna] = tempColuna[i];
+        }
     }
 
 
@@ -111,17 +126,25 @@ public class Matriz {
     }
 
 
-    public void ordenarColunaMerge(int coluna) {
-        int[] tempColuna = new int[matriz.length];
-        for (int i = 0; i < matriz.length; i++) {
-            tempColuna[i] = matriz[i][coluna];
+    public void ordenarMatrizCompleta() {
+        // Converter a matriz em um único vetor
+        int[] vetor = new int[matriz.length * matriz[0].length];
+        int k = 0;
+        for (int[] linha : matriz) {
+            for (int valor : linha) {
+                vetor[k++] = valor;
+            }
         }
 
-        mergeSort(tempColuna, 0, tempColuna.length - 1);
+
+        mergeSort(vetor, 0, vetor.length - 1);
 
 
+        k = 0;
         for (int i = 0; i < matriz.length; i++) {
-            matriz[i][coluna] = tempColuna[i];
+            for (int j = 0; j < matriz[i].length; j++) {
+                matriz[i][j] = vetor[k++];
+            }
         }
     }
 }
