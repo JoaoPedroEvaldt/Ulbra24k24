@@ -17,7 +17,7 @@ public class Matriz {
         }
     }
 
-   
+
     public void exibirMatriz() {
         for (int[] linha : matriz) {
             for (int valor : linha) {
