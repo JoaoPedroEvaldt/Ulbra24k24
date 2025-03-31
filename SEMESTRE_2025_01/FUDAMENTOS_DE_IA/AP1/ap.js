@@ -1,9 +1,30 @@
-// Importa os dados de treinamento do aula5.js
-const { arrayTreinamento } = require('./aula5.js');
+let arrayTreinamento = [
+    {
+        entrada: [
+            [1,1,1,1,1],
+            [1,0,0,0,1],
+            [1,0,0,0,1],
+            [1,0,0,0,1],
+            [1,0,0,0,1],
+            [1,0,0,0,1],
+            [1,1,1,1,1],
+        ],
+        saidaEsperada: [1,0,0,0,0,0,0,0,0,0] 
+    },
+    {
+        entrada: [
+            [0,0,1,0,0],
+            [0,1,1,0,0],
+            [1,0,1,0,0],
+            [0,0,1,0,0],
+            [0,0,1,0,0],
+            [0,0,1,0,0],
+            [1,1,1,1,1],
+        ],
+        saidaEsperada: [0,1,0,0,0,0,0,0,0,0] 
+    }
+];
 
-console.log("Dados de treinamento carregados:", arrayTreinamento.length, "exemplos");
-
-// Classe da Rede Neural
 class RedeNeural {
     constructor(tamanhoEntrada, tamanhoOculto, tamanhoSaida) {
         this.tamanhoEntrada = tamanhoEntrada;
@@ -68,10 +89,8 @@ class RedeNeural {
     }
 }
 
-// Inicializa a rede neural
 let redeNeural = new RedeNeural(35, 100, 10);
 
-// Treina a rede neural
 for (let index = 0; index < 10000; index++) {
     for (let numero = 0; numero < arrayTreinamento.length; numero++) {
         let dados = arrayTreinamento[numero];
@@ -79,15 +98,14 @@ for (let index = 0; index < 10000; index++) {
     }
 }
 
-// Teste com um número desconhecido
 let numeroParaTestar = [
+    [0,0,1,0,0],
+    [0,1,1,0,0],
+    [1,0,1,0,0],
+    [0,0,1,0,0],
+    [0,0,1,0,0],
+    [0,0,1,0,0],
     [1,1,1,1,1],
-    [1,0,0,0,1],
-    [1,0,0,0,1],
-    [0,1,1,1,1],
-    [0,0,0,0,1],
-    [0,0,0,0,1],
-    [1,1,1,1,0],
 ];
 
 let resultado = redeNeural.propagation(numeroParaTestar.flat());
